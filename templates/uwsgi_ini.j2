@@ -1,0 +1,18 @@
+[uwsgi]
+uid = {{ ansible_ssh_user }}
+gid = {{ ansible_ssh_user }}
+env = DJANGO_SETTINGS_MODULE={{ django_settings_module }}
+{% for key,value in django_env.iteritems() %}
+env = {{ key }}={{ value }}
+{% endfor %}
+home = {{ django_project_path }}
+pp = {{ django_project_source }}/{{ django_project_name }}/
+socket = /tmp/{{ django_project_name }}.sock
+chmod-socket = 666
+chown-socket = {{ ansible_ssh_user }}:{{ ansible_ssh_user }}
+module = {{ django_project_name}}.wsgi
+logdate = true
+optimize = 2
+processes = {{ django_uwsgi_processes }}
+master = true
+logto = /var/log/uwsgi/{{ django_project_name }}.log

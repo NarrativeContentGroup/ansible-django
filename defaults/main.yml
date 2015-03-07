@@ -1,0 +1,36 @@
+---
+
+django_project_name: django
+django_project_path: /var/www/{{ django_project_name }}
+django_project_source: "{{ django_project_path }}/src"
+django_port: 80
+django_server_name: '~^(.+)$'
+django_settings_module: null
+
+django_env: []
+
+django_repo: null
+django_branch: master
+
+django_media_path: "{{ django_project_source }}/{{ django_project_name }}/{{ django_project_name }}/media"
+django_static_path: "{{ django_media_path }}/static"
+django_manage_path: "{{ django_project_source }}/{{ django_project_name }}"
+
+django_system_packages_extra: []
+django_system_packages:
+  - build-essential
+  - python-dev
+  - python-virtualenv
+  - libffi-dev
+  # Pillow requirements
+  - libjpeg-dev
+  - libtiff5-dev
+  - zlib1g-dev
+  - libfreetype6-dev
+  - liblcms2-dev
+  - libwebp-dev
+  - tcl8.5-dev
+  - tk8.5-dev
+  - python-tk
+
+django_uwsgi_processes: 2

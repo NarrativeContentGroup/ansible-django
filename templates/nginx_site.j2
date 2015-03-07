@@ -1,0 +1,18 @@
+# -*- mode: nginx -*-
+server {
+    listen {{ django_port }};
+    server_name {{ django_server_name }};
+
+    location /media {
+	alias {{ django_media_path }};
+    }
+
+    location /static {
+        alias {{ django_static_path }};
+    }
+
+    location / {
+	include /etc/nginx/uwsgi_params;
+	uwsgi_pass unix:///tmp/{{ django_project_name }}.sock;
+    }
+}

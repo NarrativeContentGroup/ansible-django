@@ -1,0 +1,7 @@
+---
+dependencies:
+  - role: bigjust.nginx
+    sudo: yes
+
+  - role: theonion.uwsgi-emperor
+    sudo: yes
