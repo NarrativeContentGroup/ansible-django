@@ -32,7 +32,7 @@
        update=yes
        accept_hostkey=yes
        version={{ django_branch }}
-  when: django_deploy_key is not defined
+  when: not django_deploy_key
   tags:
     - git
 
