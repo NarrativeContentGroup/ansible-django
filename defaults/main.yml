@@ -7,7 +7,7 @@ django_port: 80
 django_server_name: '~^(.+)$'
 django_settings_module: null
 
-django_env: []
+django_env: null
 
 django_repo: null
 django_deploy_key: null
