@@ -5,9 +5,10 @@ django_project_path: /var/www/{{ django_project_name }}
 django_project_source: "{{ django_project_path }}/src"
 django_port: 80
 django_server_name: '~^(.+)$'
-django_settings_module: null
+django_settings_module: "{{ django_project_name }}.settings"
 
-django_env: null
+django_env:
+  DJANGO_SETTINGS_MODULE: "{{ django_settings_module }}"
 
 django_repo: null
 django_deploy_key: null
