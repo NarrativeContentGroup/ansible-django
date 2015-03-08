@@ -10,6 +10,7 @@ django_settings_module: null
 django_env: []
 
 django_repo: null
+django_deploy_key: null
 django_branch: master
 
 django_media_path: "{{ django_project_source }}/{{ django_project_name }}/{{ django_project_name }}/media"
