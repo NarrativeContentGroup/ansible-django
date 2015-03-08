@@ -1,7 +1,6 @@
 [uwsgi]
 uid = {{ ansible_ssh_user }}
 gid = {{ ansible_ssh_user }}
-env = DJANGO_SETTINGS_MODULE={{ django_settings_module }}
 {% for key,value in django_env.iteritems() %}
 env = {{ key }}={{ value }}
 {% endfor %}
