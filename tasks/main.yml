@@ -47,8 +47,9 @@
   notify: reload nginx
 
 - name: Configure uWSGI process
+  sudo: yes
   template: src=uwsgi_ini.j2
-            dest=/opt/apps/{{ django_project_name }}.ini
+            dest={{ uwsgi_vassals_path }}/{{ django_project_name }}.ini
 
 - name: Collect Django static files.
   django_manage: command=collectstatic
