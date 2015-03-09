@@ -22,7 +22,7 @@
        accept_hostkey=yes
        key_file={{ django_deploy_key }}
        version={{ django_branch }}
-  when: django_deploy_key
+  when: django_deploy_key is defined
   tags:
     - git
 
