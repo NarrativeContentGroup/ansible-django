@@ -47,7 +47,6 @@
   notify: reload nginx
 
 - name: Configure uWSGI process
-  sudo: yes
   template: src=uwsgi_ini.j2
             dest={{ uwsgi_vassals_path }}/{{ django_project_name }}.ini
 
