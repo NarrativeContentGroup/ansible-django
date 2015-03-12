@@ -1,7 +1,7 @@
 ---
 dependencies:
 
-  - role: 'git+https://github.com/MotherNatureNetwork/ansible-nginx.git,v1.0.1,mnn.nginx'
+  - role: mnn.nginx
 
   - role: theonion.uwsgi-emperor
     uwsgi_uid: "{{ ansible_ssh_user }}"

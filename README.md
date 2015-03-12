@@ -4,10 +4,13 @@ Deploys a Django app.
 
 ## Requirements
 
-These are included in the meta file, so they will be automatically installed
+These are included in the meta file, so they will need to be in the roles directory, installed from the following locations
 
     - name: mnn.nginx
+      src: https://github.com/MotherNatureNetwork/ansible-nginx.git
+
     - name: theonion.uwsgi-emperor
+      src: https://github.com/MotherNatureNetwork/ansible-uwsgi-emperor
 
 We are actually currently pointing at public repos, not the galaxy version at this time.
 
