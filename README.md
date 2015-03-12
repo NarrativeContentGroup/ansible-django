@@ -4,7 +4,12 @@ Deploys a Django app.
 
 ## Requirements
 
-TODO
+These are included in the meta file, so they will be automatically installed
+
+    - name: mnn.nginx
+    - name: theonion.uwsgi-emperor
+
+We are actually currently pointing at public repos, not the galaxy version at this time.
 
 ## Role Variables
 
