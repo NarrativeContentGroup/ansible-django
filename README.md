@@ -26,7 +26,7 @@ TODO
 
     - hosts: server
       roles:
-        - { role: bigjust.django }
+        - { role: mnn.django }
 
 ## License
 
@@ -34,4 +34,4 @@ MIT
 
 ## Author Information
 
-This role was created in 2015 by [Justin Caratzas](https://github.com/bigjust) for [Mother Nature Network](https://github.com/orgs/MotherNatureNetwork)
+This role was created by [Justin Caratzas](https://github.com/bigjust) for [Mother Nature Network](https://github.com/orgs/MotherNatureNetwork)
