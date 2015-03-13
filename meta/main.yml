@@ -6,4 +6,3 @@ dependencies:
   - role: theonion.uwsgi-emperor
     uwsgi_uid: "{{ ansible_ssh_user }}"
     uwsgi_gid: "{{ ansible_ssh_user }}"
-    sudo: yes
