@@ -4,7 +4,7 @@ Deploys a Django app.
 
 ## Requirements
 
-These are included in the meta file, so they will need to be in the roles directory, installed from the following locations
+The following roles need to be in the roles directory, installed from the following locations
 
     - name: mnn.nginx
       src: https://github.com/MotherNatureNetwork/ansible-nginx.git
