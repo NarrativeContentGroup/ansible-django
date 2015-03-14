@@ -36,5 +36,6 @@ django_system_packages:
   - python-tk
 
 django_uwsgi_processes: 2
+django_uwsgi_file: "{{ uwsgi_vassals_path }}/{{ django_project_name }}.ini"
 
 django_setup_frontend: true
