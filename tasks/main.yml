@@ -22,6 +22,7 @@
        key_file={{ django_deploy_key }}
        version={{ django_branch }}
   when: django_deploy_key is defined
+  notify: restart uwsgi
   tags:
     - git
 
@@ -33,6 +34,7 @@
        accept_hostkey=yes
        version={{ django_branch }}
   when: not django_deploy_key
+  notify: restart uwsgi
   tags:
     - git
 
@@ -40,24 +42,6 @@
   sudo: no
   pip: requirements={{ django_project_source }}/requirements.txt
        virtualenv={{ django_project_path }}
-
-- name: Configure Nginx site.
-  template: src=nginx_site.j2
-            dest=/etc/nginx/sites-enabled/{{ django_project_name }}.conf
-  notify: reload nginx
-
-- name: Configure uWSGI process
-  sudo: no
-  template: src=uwsgi_ini.j2
-            dest={{ uwsgi_vassals_path }}/{{ django_project_name }}.ini
-
-- name: Collect Django static files.
-  sudo: no
-  django_manage: command=collectstatic
-                 app_path={{ django_manage_path }}
-                 settings={{ django_settings_module }}
-                 virtualenv={{ django_project_path }}
-  environment: django_env
 
 - name: Run Migrations.
   sudo: no
@@ -67,7 +51,5 @@
                  virtualenv={{ django_project_path }}
   environment: django_env
 
-- name: Reload uwsgi app
-  sudo: no
-  file: path={{ uwsgi_vassals_path }}/{{ django_project_name }}.ini
-        state=touch
+- include: front_end.yml
+  when: django_setup_frontend
