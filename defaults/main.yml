@@ -36,3 +36,5 @@ django_system_packages:
   - python-tk
 
 django_uwsgi_processes: 2
+
+django_setup_frontend: true
