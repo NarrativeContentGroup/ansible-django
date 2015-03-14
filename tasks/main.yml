@@ -22,6 +22,7 @@
        key_file={{ django_deploy_key }}
        version={{ django_branch }}
   when: django_deploy_key is defined
+  notify: restart uwsgi
   tags:
     - git
 
@@ -33,6 +34,7 @@
        accept_hostkey=yes
        version={{ django_branch }}
   when: not django_deploy_key
+  notify: restart uwsgi
   tags:
     - git
 
