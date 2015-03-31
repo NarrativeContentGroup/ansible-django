@@ -17,6 +17,7 @@ django_branch: master
 django_media_path: "{{ django_project_source }}/{{ django_project_name }}/{{ django_project_name }}/media"
 django_static_path: "{{ django_media_path }}/static"
 django_manage_path: "{{ django_project_source }}/{{ django_project_name }}"
+django_python_path_extra: []
 
 django_system_packages_extra: []
 django_system_packages:
