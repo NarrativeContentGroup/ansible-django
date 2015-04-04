@@ -14,37 +14,51 @@
         group={{ django_user }}
 
 - name: Pull code from git repo.
-  sudo: no
   git: repo={{ django_repo }}
        dest={{ django_project_source }}
        update=yes
        accept_hostkey=yes
        key_file={{ django_deploy_key }}
        version={{ django_branch }}
-  when: django_deploy_key is defined
+       depth=1
+  when: django_deploy_key
   notify: restart uwsgi
   tags:
     - git
 
 - name: Pull code from git repo.
-  sudo: no
   git: repo={{ django_repo }}
        dest={{ django_project_source }}
        update=yes
        accept_hostkey=yes
        version={{ django_branch }}
+       depth=1
   when: not django_deploy_key
   notify: restart uwsgi
   tags:
     - git
 
 - name: Install python requirements.
-  sudo: no
   pip: requirements={{ django_project_source }}/requirements.txt
        virtualenv={{ django_project_path }}
 
+- name: Fix source directory permissions
+  file: state=directory
+        path={{ django_project_path }}
+        owner={{ django_user }}
+        group={{ django_user }}
+        recurse=yes
+
+- name: Run Syncdb (for Django < 1.7)
+  sudo_user: "{{ django_user }}"
+  django_manage: command=syncdb
+                 app_path={{ django_manage_path }}
+                 settings={{ django_settings_module }}
+                 virtualenv={{ django_project_path }}
+  environment: django_env
+
 - name: Run Migrations.
-  sudo: no
+  sudo_user: "{{ django_user }}"
   django_manage: command=migrate
                  app_path={{ django_manage_path }}
                  settings={{ django_settings_module }}

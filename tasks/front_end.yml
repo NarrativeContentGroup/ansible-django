@@ -12,6 +12,7 @@
                  settings={{ django_settings_module }}
                  virtualenv={{ django_project_path }}
   environment: django_env
+  when: django_collectstatic
 
 - name: Configure uWSGI process
   template: src=uwsgi_ini.j2
