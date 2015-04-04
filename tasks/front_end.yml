@@ -14,6 +14,7 @@
   environment: django_env
 
 - name: Configure uWSGI process
-  sudo: no
   template: src=uwsgi_ini.j2
             dest={{ django_uwsgi_file }}
+            group={{ django_user }}
+            owner={{ django_user }}

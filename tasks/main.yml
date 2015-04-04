@@ -10,8 +10,8 @@
 - name: Create the project directory.
   file: state=directory
         path={{ django_project_path }}
-        owner={{ ansible_ssh_user }}
-        group={{ ansible_ssh_user }}
+        owner={{ django_user }}
+        group={{ django_user }}
 
 - name: Pull code from git repo.
   sudo: no

@@ -1,6 +1,6 @@
 [uwsgi]
-uid = {{ ansible_ssh_user }}
-gid = {{ ansible_ssh_user }}
+uid = {{ django_user }}
+gid = {{ django_user }}
 {% for key,value in django_env.iteritems() %}
 env = {{ key }}={{ value }}
 {% endfor %}
@@ -11,8 +11,8 @@ pp = {{ path }}
 {% endfor %}
 socket = /tmp/{{ django_project_name }}.sock
 chmod-socket = 666
-chown-socket = {{ ansible_ssh_user }}:{{ ansible_ssh_user }}
-module = {{ django_project_name}}.wsgi
+chown-socket = {{ django_user }}:{{ django_user }}
+module = {{ django_project_name }}.wsgi
 logdate = true
 optimize = 2
 processes = {{ django_uwsgi_processes }}
