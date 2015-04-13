@@ -1,0 +1,3 @@
+{% for path in django_python_path_extra %}
+{{ path }}
+{% endfor %}
