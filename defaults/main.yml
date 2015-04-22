@@ -11,6 +11,8 @@ django_user: www-data
 django_env:
   DJANGO_SETTINGS_MODULE: "{{ django_settings_module }}"
 
+django_fixtures: []
+
 django_repo: null
 django_deploy_key: null
 django_branch: master
