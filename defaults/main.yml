@@ -4,6 +4,7 @@ django_project_name: django
 django_project_path: /var/www/{{ django_project_name }}
 django_project_source: "{{ django_project_path }}/src"
 django_port: 80
+django_requirements_file: requirements.txt
 django_server_name: '~^(.+)$'
 django_settings_module: "{{ django_project_name }}.settings"
 django_user: www-data

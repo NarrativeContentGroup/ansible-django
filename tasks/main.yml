@@ -38,7 +38,7 @@
     - git
 
 - name: Install python requirements.
-  pip: requirements={{ django_project_source }}/requirements.txt
+  pip: requirements={{ django_project_source }}/{{ django_requirements_file }}
        virtualenv={{ django_project_path }}
 
 - name: Configure Python PATH
