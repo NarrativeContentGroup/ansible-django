@@ -80,3 +80,6 @@
 
 - include: front_end.yml
   when: django_setup_frontend
+
+- name: Restart uWSGI process
+  file: path={{ django_uwsgi_file }} state=touch
