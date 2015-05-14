@@ -46,3 +46,8 @@ django_uwsgi_file: "{{ uwsgi_vassals_path }}/{{ django_project_name }}.ini"
 django_setup_frontend: true
 django_collectstatic: true
 django_syncdb: false
+
+django_basic_auth: no
+django_basic_auth_filename: "{{ django_basic_auth_realm }}.auth"
+django_basic_auth_realm: django
+django_basic_auth_entries: []

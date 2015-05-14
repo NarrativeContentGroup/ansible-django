@@ -3,6 +3,11 @@ server {
     listen {{ django_port }};
     server_name {{ django_server_name }};
 
+    {% if django_basic_auth -%}
+    auth_basic {{ django_basic_auth_realm }};
+    auth_basic_user_file {{ django_basic_auth_realm }}.auth;
+    {% endif %}
+
     location /media {
 	alias {{ django_media_path }};
     }

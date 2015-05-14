@@ -5,6 +5,12 @@
             dest=/etc/nginx/sites-enabled/{{ django_project_name }}.conf
   notify: reload nginx
 
+- name: Configure Basic Auth.
+  template: src=basic_auth
+            dest=/etc/nginx/{{ django_basic_auth_realm }}.auth
+  notify: reload nginx
+  when: django_basic_auth
+
 - name: Collect Django static files.
   sudo: no
   django_manage: command=collectstatic
