@@ -8,6 +8,8 @@ server {
     auth_basic_user_file {{ django_basic_auth_realm }}.auth;
     {% endif %}
 
+    client_max_body_size {{ django_max_upload_size }};
+
     location /media {
 	alias {{ django_media_path }};
     }
