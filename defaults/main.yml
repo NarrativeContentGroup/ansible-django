@@ -41,6 +41,7 @@ django_system_packages:
   - tk8.5-dev
   - python-tk
 
+django_uwsgi_stats: null
 django_uwsgi_processes: 2
 django_uwsgi_file: "{{ uwsgi_vassals_path }}/{{ django_project_name }}.ini"
 
