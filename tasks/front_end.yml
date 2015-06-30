@@ -12,7 +12,7 @@
   when: django_basic_auth
 
 - name: Collect Django static files.
-  sudo: no
+  sudo_user: "{{ django_user }}"
   django_manage: command=collectstatic
                  app_path={{ django_manage_path }}
                  settings={{ django_settings_module }}
