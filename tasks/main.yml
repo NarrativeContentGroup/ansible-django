@@ -55,7 +55,7 @@
 - name: Logging directory permissions
   file: state=directory
         path=/var/log/uwsgi
-        mode=775
+        mode=777
 
 - name: Run Migrations.
   sudo_user: "{{ django_user }}"
