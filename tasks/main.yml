@@ -52,6 +52,11 @@
         group={{ django_user }}
         recurse=yes
 
+- name: Logging directory permissions
+  file: state=directory
+        path=/var/log/uwsgi
+        mode=775
+
 - name: Run Migrations.
   sudo_user: "{{ django_user }}"
   django_manage: command=migrate
