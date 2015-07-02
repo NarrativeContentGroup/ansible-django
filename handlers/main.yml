@@ -3,4 +3,4 @@
   when: django_setup_frontend
 
 - name: reload nginx
-  service: name=nginx state=reloaded
+  service: name={{ django_nginx_service }} state=reloaded

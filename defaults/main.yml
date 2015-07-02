@@ -6,6 +6,7 @@ django_project_source: "{{ django_project_path }}/src"
 
 django_max_upload_size: 5m
 django_nginx_config: nginx_site.j2
+django_nginx_service: nginx
 django_port: 80
 django_requirements_file: requirements.txt
 django_server_name: '~^(.+)$'
