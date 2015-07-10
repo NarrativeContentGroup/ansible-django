@@ -6,6 +6,8 @@
   with_items:
     - "{{ django_system_packages }}"
     - "{{ django_system_packages_extra }}"
+  tags:
+    - requirements
 
 - name: Create the project directory.
   file: state=directory
