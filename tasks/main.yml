@@ -1,6 +1,7 @@
 ---
 
 - name: Install system-level requirements.
+  sudo: yes
   apt: pkg={{ item }}
        state=installed
   with_items:
@@ -10,6 +11,7 @@
     - requirements
 
 - name: Create the project directory.
+  sudo: yes
   file: state=directory
         path={{ django_project_path }}
         owner={{ django_user }}
@@ -55,6 +57,7 @@
         recurse=yes
 
 - name: Logging directory permissions
+  sudo: yes
   file: state=directory
         path=/var/log/uwsgi
         mode=777

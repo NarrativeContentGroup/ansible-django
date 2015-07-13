@@ -1,11 +1,13 @@
 ---
 
 - name: Configure Nginx site.
+  sudo: yes
   template: src={{ django_nginx_config }}
             dest=/etc/nginx/sites-enabled/{{ django_project_name }}.conf
   notify: reload nginx
 
 - name: Configure Basic Auth.
+  sudo: yes
   template: src=basic_auth
             dest=/etc/nginx/{{ django_basic_auth_realm }}.auth
   notify: reload nginx
