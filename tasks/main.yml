@@ -62,6 +62,15 @@
         path=/var/log/uwsgi
         mode=777
 
+- name: Syncdb
+  sudo_user: "{{ django_user }}"
+  django_manage: command=syncdb
+                 app_path={{ django_manage_path }}
+                 settings={{ django_settings_module }}
+                 virtualenv={{ django_project_path }}
+  environment: django_env
+  when: django_syncdb
+
 - name: Run Migrations.
   sudo_user: "{{ django_user }}"
   django_manage: command=migrate
@@ -69,7 +78,7 @@
                  settings={{ django_settings_module }}
                  virtualenv={{ django_project_path }}
   environment: django_env
-  when: django_syncdb
+  when: django_migrate
 
 - name: Load Fixtures.
   sudo_user: "{{ django_user }}"
