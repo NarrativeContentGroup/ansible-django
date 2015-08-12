@@ -18,6 +18,7 @@ optimize = 2
 processes = {{ django_uwsgi_processes }}
 master = true
 logto = /var/log/uwsgi/{{ django_project_name }}.log
+enable-threads = true
 {% if django_uwsgi_stats %}
 stats = {{ django_uwsgi_stats }}
 {% endif %}
