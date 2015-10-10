@@ -42,7 +42,7 @@
 - name: Install python requirements.
   pip: requirements={{ django_project_source }}/{{ django_requirements_file }}
        virtualenv={{ django_project_path }}
-       extra_args='--exists-action=w'
+       extra_args='--exists-action=w --trusted-host pypi.mnndev.com'
 
 - name: Configure Python PATH
   template: src=django.pth
