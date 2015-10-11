@@ -59,7 +59,9 @@
   sudo: yes
   file: state=directory
         path=/var/log/uwsgi
-        mode=777
+        owner={{ django_user }}
+        group={{ django_user }}
+        recurse=yes
 
 - name: Syncdb
   sudo_user: "{{ django_user }}"
