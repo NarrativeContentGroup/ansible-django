@@ -50,7 +50,7 @@
 
 - name: Fix source directory permissions
   file: state=directory
-        path={{ django_project_path }}
+        path={{ django_project_source }}
         owner={{ django_user }}
         group={{ django_user }}
         recurse=yes
