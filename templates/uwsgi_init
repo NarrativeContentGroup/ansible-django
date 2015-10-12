@@ -1,0 +1,31 @@
+description "uWSGI starter"
+
+start on (local-filesystems and runlevel [2345])
+stop on runlevel [016]
+
+respawn
+
+exec uwsgi \
+--uid {{ django_user }} \
+--gid {{ django_user }} \
+--home {{ django_project_path }} \
+{% for key,value in django_env.iteritems() %}
+--env {{ key }}={{ value }} \
+{% endfor %}
+--pythonpath {{ django_project_source }}/{{ django_project_name }} \
+{% for path in django_python_path_extra %}
+--pythonpath {{ path }} \
+{% endfor %}
+--socket /tmp/{{ django_project_name }}.sock \
+--chmod-socket \
+--chown-socket {{ django_user }}:{{ django_user }} \
+--module {{ django_project_name }}.wsgi \
+--logdate \
+--optimize 2 \
+--processes {{ django_uwsgi_processes }} \
+--master \
+--logto /var/log/uwsgi/{{ django_project_name }}.log \
+--enable-threads \
+{% if django_uwsgi_stats %}
+--stats {{ django_uwsgi_stats }} \
+{% endif %}

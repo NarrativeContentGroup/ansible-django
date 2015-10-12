@@ -95,4 +95,4 @@
   when: django_setup_frontend
 
 - name: Restart uWSGI process
-  file: path={{ django_uwsgi_file }} state=touch
+  service: name={{ django_project_name }} state=reloaded

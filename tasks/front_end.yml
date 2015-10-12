@@ -22,8 +22,9 @@
   environment: django_env
   when: django_collectstatic
 
-- name: Configure uWSGI process
-  template: src=uwsgi_ini.j2
-            dest={{ django_uwsgi_file }}
-            group={{ django_user }}
-            owner={{ django_user }}
+- name: Install uWSGI
+  pip: name=uwsgi version={{ django_uwsgi_version }}
+
+- name: Configure uWSGI init script
+  template: src=uwsgi_init
+            dest=/etc/init/{{ django_project_name }}.conf

@@ -1,6 +1,5 @@
 - name: restart uwsgi
-  file: path={{ django_uwsgi_file }} state=touch
-  when: django_setup_frontend
+  service: name={{ django_project_name }} state=reloaded
 
 - name: reload nginx
   service: name={{ django_nginx_service }} state=reloaded
