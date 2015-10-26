@@ -40,6 +40,7 @@
     - git
 
 - name: Install python requirements.
+  sudo: no
   pip: requirements={{ django_project_source }}/{{ django_requirements_file }}
        virtualenv={{ django_project_path }}
        extra_args='--exists-action=w --trusted-host pypi.mnndev.com'
