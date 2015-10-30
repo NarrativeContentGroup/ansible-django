@@ -64,6 +64,14 @@
         group={{ django_user }}
         recurse=yes
 
+- name: Virtualenv directory permissions
+  sudo: yes
+  file: state=directory
+        path={{ django_project_path }}
+        owner={{ django_user }}
+        group={{ django_user }}
+        recurse=yes
+
 - name: Syncdb
   sudo_user: "{{ django_user }}"
   django_manage: command=syncdb
