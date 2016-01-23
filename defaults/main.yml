@@ -1,14 +1,9 @@
 ---
 
-django_project_name: django
-django_project_path: /var/www/{{ django_project_name }}
-django_project_source: "{{ django_project_path }}/src"
+# strongly suggest you provide these
 
-django_max_upload_size: 5m
-django_nginx_config: nginx_site.j2
-django_nginx_service: nginx
-django_port: 80
-django_requirements_file: requirements.txt
+django_project_name: django
+django_repo: null
 django_server_name: '~^(.+)$'
 django_settings_module: "{{ django_project_name }}.settings"
 django_user: www-data
@@ -16,23 +11,34 @@ django_user: www-data
 django_env:
   DJANGO_SETTINGS_MODULE: "{{ django_settings_module }}"
 
-django_fixtures: []
-
-django_repo: null
-django_deploy_key: null
+# these are just for convenience(sp?)
 django_branch: master
-
-django_media_path: "{{ django_project_source }}/{{ django_project_name }}/{{ django_project_name }}/media"
-django_static_path: "{{ django_media_path }}/static"
+django_collectstatic: true
+django_deploy_key: null
+django_fixtures: []
 django_manage_path: "{{ django_project_source }}/{{ django_project_name }}"
+django_max_upload_size: 5m
+django_media_path: "{{ django_project_source }}/{{ django_project_name }}/{{ django_project_name }}/media"
+django_migrate: true
+django_nginx_config: nginx_site.j2
+django_pip_extra_args: '--exists-action=w'
+django_port: 80
+django_project_path: /srv/www/{{ django_project_name }}
 django_python_path_extra: []
-
+django_project_source: "{{ django_project_path }}/src"
+django_requirements_file: requirements.txt
+django_setup_frontend: true
+django_static_path: "{{ django_media_path }}/static"
+django_syncdb: false
 django_system_packages_extra: []
+
 django_system_packages:
+  - git
   - build-essential
   - python-dev
   - python-virtualenv
   - libffi-dev
+
   # Pillow requirements
   - libjpeg-dev
   - libtiff5-dev
@@ -49,11 +55,6 @@ django_uwsgi_version: 2.0.11.2
 django_uwsgi_stats: null
 django_uwsgi_processes: 2
 django_uwsgi_file: "{{ uwsgi_vassals_path }}/{{ django_project_name }}.ini"
-
-django_setup_frontend: true
-django_collectstatic: true
-django_syncdb: false
-django_migrate: true
 
 django_basic_auth: no
 django_basic_auth_filename: "{{ django_basic_auth_realm }}.auth"

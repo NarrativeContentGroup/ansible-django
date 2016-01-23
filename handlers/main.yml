@@ -2,4 +2,4 @@
   service: name={{ django_project_name }} state=reloaded
 
 - name: reload nginx
-  service: name={{ django_nginx_service }} state=reloaded
+  service: name=nginx state=reloaded
