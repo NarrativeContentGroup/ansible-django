@@ -1,2 +1,27 @@
 ---
-dependencies: []
+galaxy_info:
+  author: Justin Caratzas
+  description: deploy django
+  company: Narrative Content Group
+  license: MIT
+  min_ansible_version: 1.2
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - trusty
+
+dependencies:
+  - role: nickhammond.logrotate
+    sudo: true
+    logrotate_scripts:
+      - name: uwsgi
+        path: /var/log/uwsgi/loop.log
+        options:
+          - daily
+          - rotate 7
+          - missingok
+          - compress
+          - delaycompress
+          - copytruncate
+          - sharedscripts
