@@ -1,5 +1,13 @@
 ---
 
+- name: Install front-end required packages.
+  apt: pkg={{ item }}
+       state=installed
+  with_items:
+    - ruby-compass
+  tags:
+    - requirements
+
 - name: Configure Nginx site.
   sudo: yes
   template: src={{ django_nginx_config }}
@@ -12,6 +20,10 @@
             dest=/etc/nginx/{{ django_basic_auth_realm }}.auth
   notify: reload nginx
   when: django_basic_auth
+
+- name: Compile CSS
+  command: compass compile chdir={{ django_scss_path }}
+  when: django_scss_path is defined
 
 - name: Collect Django static files.
   sudo_user: "{{ django_user }}"

@@ -28,6 +28,7 @@ django_python_path_extra: []
 django_project_source: "{{ django_project_path }}/src"
 django_requirements_file: requirements.txt
 django_setup_frontend: true
+django_scss_path: "{{ django_project_source }}/{{ django_project_name }}/{{ django_project_name }}/static/src"
 django_static_path: "{{ django_media_path }}/static"
 django_syncdb: false
 django_system_packages_extra: []
