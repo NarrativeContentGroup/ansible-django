@@ -26,6 +26,7 @@ exec uwsgi \
 --master \
 --logto /var/log/uwsgi/{{ django_project_name }}.log \
 --enable-threads \
+--max-requests {{ django_uwsgi_max_requests }} \
 {% if django_uwsgi_stats %}
 --stats {{ django_uwsgi_stats }} \
 {% endif %}
