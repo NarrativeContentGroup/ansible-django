@@ -27,6 +27,11 @@
   tags:
     - git
 
+- name: Remove generated files
+  command: git clean -fdx chdir={{ django_project_source }}
+  tags:
+    - git
+
 - name: Install python requirements.
   sudo: no
   pip: requirements={{ django_project_source }}/{{ django_requirements_file }}
