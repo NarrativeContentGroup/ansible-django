@@ -1,5 +1,8 @@
 - name: reload uwsgi
   service: name={{ django_project_name }} state=reloaded
 
+- name: restart uwsgi
+  service: name={{ django_project_name }} state=restarted
+
 - name: reload nginx
   service: name=nginx state=reloaded

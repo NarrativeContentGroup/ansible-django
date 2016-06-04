@@ -49,3 +49,4 @@
 - name: Configure uWSGI init script
   template: src=uwsgi_init
             dest=/etc/init/{{ django_project_name }}.conf
+  notify: restart uwsgi
