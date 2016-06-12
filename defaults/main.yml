@@ -14,6 +14,7 @@ django_env:
 # these are just for convenience(sp?)
 django_branch: master
 django_collectstatic: true
+django_compile_css: yes
 django_compressor_enabled: yes
 django_deploy_key: null
 django_fixtures: []

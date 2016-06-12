@@ -23,7 +23,7 @@
 
 - name: Compile CSS
   command: compass compile chdir={{ django_scss_path }}
-  when: django_scss_path is defined
+  when: django_compile_css
 
 - name: Collect Django static files.
   sudo_user: "{{ django_user }}"
