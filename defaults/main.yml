@@ -15,7 +15,7 @@ django_env:
 django_branch: master
 django_collectstatic: true
 django_compile_css: yes
-django_compressor_enabled: yes
+django_compressor_offline: yes
 django_deploy_key: null
 django_fixtures: []
 django_manage_path: "{{ django_project_source }}/{{ django_project_name }}"
