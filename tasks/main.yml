@@ -1,7 +1,7 @@
 ---
 
 - name: Install system-level requirements.
-  sudo: yes
+  become: yes
   apt: pkg={{ item }}
        state=installed
   with_items:
@@ -11,7 +11,7 @@
     - requirements
 
 - name: Create the project directory.
-  sudo: yes
+  become: yes
   file: state=directory
         path={{ django_project_path }}
         owner={{ django_user }}
@@ -33,7 +33,7 @@
     - git
 
 - name: Install python requirements.
-  sudo: no
+  become: no
   pip: requirements={{ django_project_source }}/{{ django_requirements_file }}
        virtualenv={{ django_project_path }}
        extra_args='--exists-action=w --trusted-host pypi.mnndev.com'
@@ -50,7 +50,7 @@
         recurse=yes
 
 - name: Logging directory permissions
-  sudo: yes
+  become: yes
   file: state=directory
         path=/var/log/uwsgi
         owner={{ django_user }}
@@ -58,7 +58,7 @@
         recurse=yes
 
 - name: Virtualenv directory permissions
-  sudo: yes
+  become: yes
   file: state=directory
         path={{ django_project_path }}
         owner={{ django_user }}
@@ -66,31 +66,31 @@
         recurse=yes
 
 - name: Syncdb
-  sudo_user: "{{ django_user }}"
+  become_user: "{{ django_user }}"
   django_manage: command=syncdb
                  app_path={{ django_manage_path }}
                  settings={{ django_settings_module }}
                  virtualenv={{ django_project_path }}
-  environment: django_env
+  environment: "{{ django_env }}"
   when: django_syncdb
 
 - name: Run Migrations.
-  sudo_user: "{{ django_user }}"
+  become_user: "{{ django_user }}"
   django_manage: command=migrate
                  app_path={{ django_manage_path }}
                  settings={{ django_settings_module }}
                  virtualenv={{ django_project_path }}
-  environment: django_env
+  environment: "{{ django_env }}"
   when: django_migrate
 
 - name: Load Fixtures.
-  sudo_user: "{{ django_user }}"
+  become_user: "{{ django_user }}"
   django_manage: command=loaddata
                  app_path={{ django_manage_path }}
                  settings={{ django_settings_module }}
                  virtualenv={{ django_project_path }}
                  fixtures="{{ django_fixtures | join(" ") }}"
-  environment: django_env
+  environment: "{{ django_env }}"
   when: django_fixtures
 
 - include: front_end.yml

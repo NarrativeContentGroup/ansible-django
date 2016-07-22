@@ -9,13 +9,13 @@
     - requirements
 
 - name: Configure Nginx site.
-  sudo: yes
+  become: yes
   template: src={{ django_nginx_config }}
             dest=/etc/nginx/sites-enabled/{{ django_project_name }}.conf
   notify: reload nginx
 
 - name: Configure Basic Auth.
-  sudo: yes
+  become: yes
   template: src=basic_auth
             dest=/etc/nginx/{{ django_basic_auth_realm }}.auth
   notify: reload nginx
@@ -26,7 +26,7 @@
   when: django_compile_css
 
 - name: Collect Django static files.
-  sudo_user: "{{ django_user }}"
+  become_user: "{{ django_user }}"
   django_manage: command=collectstatic
                  app_path={{ django_manage_path }}
                  settings={{ django_settings_module }}
@@ -35,7 +35,7 @@
   when: django_collectstatic
 
 - name: Compress static files.
-  sudo_user: "{{ django_user }}"
+  become_user: "{{ django_user }}"
   django_manage: command=compress
                  app_path={{ django_manage_path }}
                  settings={{ django_settings_module }}

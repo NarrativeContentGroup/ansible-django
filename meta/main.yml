@@ -13,7 +13,7 @@ galaxy_info:
 
 dependencies:
   - role: nickhammond.logrotate
-    sudo: true
+    become: yes
     logrotate_scripts:
       - name: uwsgi
         path: /var/log/uwsgi/loop.log
