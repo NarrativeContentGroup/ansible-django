@@ -31,7 +31,7 @@
                  app_path={{ django_manage_path }}
                  settings={{ django_settings_module }}
                  virtualenv={{ django_project_path }}
-  environment: django_env
+  environment: '{{ django_env }}'
   when: django_collectstatic
 
 - name: Compress static files.
@@ -40,7 +40,7 @@
                  app_path={{ django_manage_path }}
                  settings={{ django_settings_module }}
                  virtualenv={{ django_project_path }}
-  environment: django_env
+  environment: '{{ django_env }}'
   when: django_compressor_offline
 
 - name: Install uWSGI
