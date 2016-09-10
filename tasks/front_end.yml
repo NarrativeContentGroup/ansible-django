@@ -21,6 +21,13 @@
   notify: reload nginx
   when: django_basic_auth
 
+- name: Static directory permissions
+  file: state=directory
+        path={{ django_static_path }}
+        owner={{ django_user }}
+        group={{ django_user }}
+        recurse=yes
+
 - name: Compile CSS
   command: compass compile chdir={{ django_scss_path }}
   when: django_compile_css
