@@ -4,6 +4,7 @@
   become: yes
   apt: pkg={{ item }}
        state=installed
+       update_cache=yes
   with_items:
     - "{{ django_system_packages }}"
     - "{{ django_system_packages_extra }}"
@@ -36,7 +37,7 @@
   become: no
   pip: requirements={{ django_project_source }}/{{ django_requirements_file }}
        virtualenv={{ django_project_path }}
-       extra_args='--exists-action=w --trusted-host pypi.mnndev.com'
+       state=present
 
 - name: Configure Python PATH
   template: src=django.pth

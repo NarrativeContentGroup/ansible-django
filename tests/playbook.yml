@@ -1,0 +1,8 @@
+---
+- hosts: all
+  become: yes
+  roles:
+    - role: mnn.postgresql
+    - role: mnn.nginx
+    - role: mnn.django
+      django_repo: https://github.com/bigjust/django-example.git
