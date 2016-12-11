@@ -34,7 +34,6 @@
     - git
 
 - name: Install python requirements.
-  become: no
   pip: requirements={{ django_project_source }}/{{ django_requirements_file }}
        virtualenv={{ django_project_path }}
        state=present
