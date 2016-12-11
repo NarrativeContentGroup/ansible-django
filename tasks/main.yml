@@ -24,7 +24,6 @@
        accept_hostkey=yes
        key_file={{ django_deploy_key|default(omit) }}
        version={{ django_branch }}
-  notify: reload uwsgi
   tags:
     - git
 
@@ -99,3 +98,8 @@
 
 - name: Reload uWSGI process
   service: name={{ django_project_name }} state=reloaded
+  when: ansible_distribution_release == 'trusty'
+
+- name: Reload uWSGI process
+  systemd: name={{ django_project_name }} state=reloaded
+  when: ansible_distribution_release == 'xenial'
