@@ -32,6 +32,7 @@
   command: git clean -fdx chdir={{ django_project_source }}
   tags:
     - git
+    - skip_ansible_lint
 
 - name: Install python requirements.
   pip: requirements={{ django_project_source }}/{{ django_requirements_file }}
