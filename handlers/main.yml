@@ -4,5 +4,8 @@
 - name: restart uwsgi
   service: name={{ django_project_name }} state=restarted
 
+- name: restart uwsgi (systemd)
+  systemd: name={{ django_project_name }} state=restarted
+
 - name: reload nginx
   service: name=nginx state=reloaded

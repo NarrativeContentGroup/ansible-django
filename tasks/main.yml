@@ -100,6 +100,10 @@
   service: name={{ django_project_name }} state=reloaded
   when: ansible_distribution_release == 'trusty'
 
+- name: Make sure uWSGI is running
+  systemd: name={{ django_project_name }} state=started
+  when: ansible_distribution_release == 'xenial'
+
 - name: Reload uWSGI process
   systemd: name={{ django_project_name }} state=reloaded
   when: ansible_distribution_release == 'xenial'

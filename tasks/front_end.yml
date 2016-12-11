@@ -56,4 +56,11 @@
 - name: Configure uWSGI init script
   template: src=uwsgi_init
             dest=/etc/init/{{ django_project_name }}.conf
+  when: ansible_distribution_release == 'trusty'
   notify: restart uwsgi
+
+- name: Configure uWSGI init script (systemd)
+  template: src=uwsgi.service
+            dest=/lib/systemd/system/{{ django_project_name }}.service
+  when: ansible_distribution_release == 'xenial'
+  notify: restart uwsgi (systemd)
