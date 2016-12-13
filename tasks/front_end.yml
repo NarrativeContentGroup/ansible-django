@@ -1,6 +1,7 @@
 ---
 
 - name: Install front-end required packages.
+  become: yes
   apt: pkg={{ item }}
        state=installed
   with_items:
@@ -22,6 +23,7 @@
   when: django_basic_auth
 
 - name: Static directory permissions
+  become: yes
   file: state=directory
         path={{ django_static_path }}
         owner={{ django_user }}
@@ -33,7 +35,6 @@
   when: django_compile_css
 
 - name: Collect Django static files.
-  become_user: "{{ django_user }}"
   django_manage: command=collectstatic
                  app_path={{ django_manage_path }}
                  settings={{ django_settings_module }}
@@ -42,7 +43,6 @@
   when: django_collectstatic
 
 - name: Compress static files.
-  become_user: "{{ django_user }}"
   django_manage: command=compress
                  app_path={{ django_manage_path }}
                  settings={{ django_settings_module }}
@@ -51,15 +51,18 @@
   when: django_compressor_offline
 
 - name: Install uWSGI
+  become: yes
   pip: name=uwsgi version={{ django_uwsgi_version }}
 
 - name: Configure uWSGI init script
+  become: yes
   template: src=uwsgi_init
             dest=/etc/init/{{ django_project_name }}.conf
   when: ansible_distribution_release == 'trusty'
   notify: restart uwsgi
 
 - name: Configure uWSGI init script (systemd)
+  become: yes
   template: src=uwsgi.service
             dest=/lib/systemd/system/{{ django_project_name }}.service
   when: ansible_distribution_release == 'xenial'

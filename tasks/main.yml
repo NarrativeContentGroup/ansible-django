@@ -66,7 +66,6 @@
         recurse=yes
 
 - name: Syncdb
-  become_user: "{{ django_user }}"
   django_manage: command=syncdb
                  app_path={{ django_manage_path }}
                  settings={{ django_settings_module }}
@@ -75,7 +74,6 @@
   when: django_syncdb
 
 - name: Run Migrations.
-  become_user: "{{ django_user }}"
   django_manage: command=migrate
                  app_path={{ django_manage_path }}
                  settings={{ django_settings_module }}
@@ -84,7 +82,6 @@
   when: django_migrate
 
 - name: Load Fixtures.
-  become_user: "{{ django_user }}"
   django_manage: command=loaddata
                  app_path={{ django_manage_path }}
                  settings={{ django_settings_module }}
@@ -97,13 +94,16 @@
   when: django_setup_frontend
 
 - name: Reload uWSGI process
+  become: yes
   service: name={{ django_project_name }} state=reloaded
   when: ansible_distribution_release == 'trusty'
 
 - name: Make sure uWSGI is running
+  become: yes
   systemd: name={{ django_project_name }} state=started
   when: ansible_distribution_release == 'xenial'
 
 - name: Reload uWSGI process
+  become: yes
   systemd: name={{ django_project_name }} state=reloaded
   when: ansible_distribution_release == 'xenial'
