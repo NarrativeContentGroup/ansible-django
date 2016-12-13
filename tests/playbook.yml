@@ -1,12 +1,15 @@
 ---
 - hosts: all
-  become: yes
+
   roles:
     - role: mnn.postgresql
+      become: yes
       postgresql_database: django_example
+
     - role: mnn.nginx
+
     - role: mnn.django
       django_repo: https://github.com/bigjust/django-example.git
       django_requirements_file: requirements/test.txt
       django_settings_module: config.settings.test
-      django_user: vagrant
+      django_user: ubuntu
