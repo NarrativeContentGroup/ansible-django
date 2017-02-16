@@ -33,7 +33,13 @@
     - git
     - skip_ansible_lint
 
-- name: Install python requirements.
+- name: Install python requirements
+  pip: name={{ item }}
+       state=present
+       virtualenv={{ django_project_path }}
+  with_items: '{{ django_python_requirements }}'
+
+- name: Install python requirements file.
   pip: requirements={{ django_project_source }}/{{ django_requirements_file }}
        virtualenv={{ django_project_path }}
        state=present

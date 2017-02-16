@@ -27,6 +27,7 @@ django_nginx_config: nginx_site.j2
 django_port: 80
 django_project_path: /srv/www/{{ django_project_name }}
 django_python_path_extra: []
+django_python_requirements: []
 django_project_source: "{{ django_project_path }}/src"
 django_requirements_file: requirements.txt
 django_setup_frontend: true
