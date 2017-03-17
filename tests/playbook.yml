@@ -9,6 +9,7 @@
     - role: mnn.nginx
 
     - role: mnn.django
+      become: no
       django_repo: https://github.com/bigjust/django-example.git
       django_requirements_file: requirements/test.txt
       django_settings_module: config.settings.test
