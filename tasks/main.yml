@@ -80,28 +80,34 @@
         recurse=yes
 
 - name: Syncdb
+  become: yes
+  become_user: '{{ django_user }}'
   django_manage: command=syncdb
                  app_path={{ django_manage_path }}
                  settings={{ django_settings_module }}
                  virtualenv={{ django_project_path }}
-  environment: "{{ django_env }}"
+  environment: '{{ django_env }}'
   when: django_syncdb
 
 - name: Run Migrations.
+  become: yes
+  become_user: '{{ django_user }}'
   django_manage: command=migrate
                  app_path={{ django_manage_path }}
                  settings={{ django_settings_module }}
                  virtualenv={{ django_project_path }}
-  environment: "{{ django_env }}"
+  environment: '{{ django_env }}'
   when: django_migrate
 
 - name: Load Fixtures.
+  become: yes
+  become_user: '{{ django_user }}'
   django_manage: command=loaddata
                  app_path={{ django_manage_path }}
                  settings={{ django_settings_module }}
                  virtualenv={{ django_project_path }}
                  fixtures="{{ django_fixtures | join(" ") }}"
-  environment: "{{ django_env }}"
+  environment: '{{ django_env }}'
   when: django_fixtures
 
 - include: front_end.yml

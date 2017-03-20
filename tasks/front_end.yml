@@ -35,6 +35,8 @@
   when: django_compile_css
 
 - name: Collect Django static files.
+  become: yes
+  become_user: '{{ django_user }}'
   django_manage: command=collectstatic
                  app_path={{ django_manage_path }}
                  settings={{ django_settings_module }}
@@ -43,6 +45,8 @@
   when: django_collectstatic
 
 - name: Compress static files.
+  become: yes
+  become_user: '{{ django_user }}'
   django_manage: command=compress
                  app_path={{ django_manage_path }}
                  settings={{ django_settings_module }}
