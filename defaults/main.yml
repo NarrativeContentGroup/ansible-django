@@ -69,3 +69,7 @@ django_basic_auth: no
 django_basic_auth_filename: "{{ django_basic_auth_realm }}.auth"
 django_basic_auth_realm: django
 django_basic_auth_entries: []
+
+# Optional Features
+
+django_post_deploy_scripts: []
