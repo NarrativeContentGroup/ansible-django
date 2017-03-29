@@ -59,7 +59,7 @@
 
 - name: Configure Python PATH
   template: src=django.pth
-            dest={{ django_deployment_symlink }}/lib/python2.7/site-packages/
+            dest={{ django_project_path }}/lib/python2.7/site-packages/
 
 - name: Fix source directory permissions
   file: state=directory
