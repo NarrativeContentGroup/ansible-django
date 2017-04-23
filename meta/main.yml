@@ -17,7 +17,7 @@ dependencies:
     become: yes
     logrotate_scripts:
       - name: uwsgi
-        path: /var/log/uwsgi/loop.log
+        path: /var/log/uwsgi/*.log
         options:
           - daily
           - rotate 7
