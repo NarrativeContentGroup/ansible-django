@@ -40,6 +40,13 @@
   tags:
     - git
 
+- name: Install Latest Pip
+  pip: name={{ item.name }}
+       version={{ item.version }}
+       virtualenv={{ django_project_path }}
+  with_items:
+    - name: pip
+      version: 9.0.1
 
 - name: Install python requirements
   pip: name={{ item }}
