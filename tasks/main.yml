@@ -40,11 +40,6 @@
   tags:
     - git
 
-- name: Remove generated files
-  command: git clean -fdx chdir={{ django_project_source }}
-  tags:
-    - git
-    - skip_ansible_lint
 
 - name: Install python requirements
   pip: name={{ item }}
