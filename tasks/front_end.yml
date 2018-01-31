@@ -1,11 +1,18 @@
 ---
 
+- name: Install Ruby
+  become: yes
+  apt: pkg=ruby-dev
+  tags:
+    - requirements
+
 - name: Install front-end required packages.
   become: yes
-  apt: pkg={{ item }}
-       state=installed
+  gem: name={{ item }}
+       version=1.0.3
+       user_install=no
   with_items:
-    - ruby-compass
+    - compass
   tags:
     - requirements
 
