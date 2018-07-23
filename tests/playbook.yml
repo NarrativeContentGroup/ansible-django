@@ -13,4 +13,4 @@
       django_repo: https://github.com/bigjust/django-example.git
       django_requirements_file: requirements/test.txt
       django_settings_module: config.settings.test
-      django_user: '{{ ansible_ssh_user }}'
+      django_user: ubuntu
