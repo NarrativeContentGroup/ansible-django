@@ -156,3 +156,4 @@
   with_items: '{{ django_post_deploy_scripts }}'
   tags:
     - deploy
+    - post_deploy_script
