@@ -27,6 +27,9 @@ exec uwsgi \
 --logto /var/log/uwsgi/{{ django_project_name }}.log \
 --enable-threads \
 --max-requests {{ django_uwsgi_max_requests }} \
+--ignore-sigpipe \
+--ignore-write-errors \
+--disable-write-exception \
 {% if django_uwsgi_stats %}
 --stats {{ django_uwsgi_stats }} \
 {% endif %}
