@@ -3,3 +3,4 @@ __pycache__
 .molecule
 .vagrant
 playbook.retry
+*.py[co]
