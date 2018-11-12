@@ -2,11 +2,11 @@
 
 - name: Install system-level requirements.
   become: yes
-  apt: pkg={{ item }}
-       update_cache=yes
-  with_items:
-    - "{{ django_system_packages }}"
-    - "{{ django_system_packages_extra }}"
+  apt:
+    update_cache: yes
+    name:
+      - "{{ django_system_packages }}"
+      - "{{ django_system_packages_extra }}"
   tags:
     - requirements
 
