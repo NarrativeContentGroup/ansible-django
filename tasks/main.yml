@@ -4,9 +4,7 @@
   become: yes
   apt:
     update_cache: yes
-    name:
-      - "{{ django_system_packages }}"
-      - "{{ django_system_packages_extra }}"
+    name: "{{ django_system_packages }} + {{ django_system_packages_extra }}"
   tags:
     - requirements
 
