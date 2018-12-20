@@ -14,8 +14,8 @@ django_env:
 # these are just for convenience(sp?)
 django_branch: master
 django_collectstatic: true
-django_compile_css: no
-django_compressor_offline: no
+django_compile_css: false
+django_compressor_offline: false
 django_deploy_key: null
 django_deployment_base: /srv/www
 django_deployment_symlink: '{{ django_deployment_base }}/current'
@@ -65,7 +65,7 @@ django_uwsgi_processes: 2
 django_uwsgi_max_requests: 10000
 django_uwsgi_file: "{{ uwsgi_vassals_path }}/{{ django_project_name }}.ini"
 
-django_basic_auth: no
+django_basic_auth: false
 django_basic_auth_filename: "{{ django_basic_auth_realm }}.auth"
 django_basic_auth_realm: django
 django_basic_auth_entries: []

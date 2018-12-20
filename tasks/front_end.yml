@@ -1,48 +1,51 @@
 ---
 
 - name: Install Ruby
-  become: yes
+  become: 'yes'
   apt: pkg=ruby-dev
   tags:
     - requirements
 
 - name: Install front-end required packages.
-  become: yes
-  gem: name={{ item }}
-       version=1.0.3
+  become: 'yes'
+  gem: name={{ item.name }}
+       version={{ item.version }}
        user_install=no
   with_items:
-    - compass
+    - name: rb-inotify
+      version: 0.9.10
+    - name: compass
+      version: 1.0.3
   tags:
     - requirements
 
 - name: Configure Nginx site.
-  become: yes
+  become: 'yes'
   template: src={{ django_nginx_config }}
             dest=/etc/nginx/sites-enabled/{{ django_project_name }}.conf
   notify: reload nginx
 
 - name: Configure Basic Auth.
-  become: yes
+  become: 'yes'
   template: src=basic_auth
             dest=/etc/nginx/{{ django_basic_auth_realm }}.auth
   notify: reload nginx
   when: django_basic_auth
 
 - name: Static directory permissions
-  become: yes
+  become: 'yes'
   file: state=directory
         path={{ django_static_path }}
         owner={{ django_user }}
         group={{ django_user }}
-        recurse=yes
+        recurse='yes'
 
 - name: Compile CSS
   command: compass compile chdir={{ django_scss_path }}
   when: django_compile_css
 
 - name: Collect Django static files.
-  become: yes
+  become: 'yes'
   become_user: '{{ django_user }}'
   django_manage: command=collectstatic
                  app_path={{ django_manage_path }}
@@ -52,7 +55,7 @@
   when: django_collectstatic
 
 - name: Compress static files.
-  become: yes
+  become: 'yes'
   become_user: '{{ django_user }}'
   django_manage: command=compress
                  app_path={{ django_manage_path }}
@@ -62,18 +65,18 @@
   when: django_compressor_offline
 
 - name: Install uWSGI
-  become: yes
+  become: 'yes'
   pip: name=uwsgi version={{ django_uwsgi_version }}
 
 - name: Configure uWSGI init script
-  become: yes
+  become: 'yes'
   template: src=uwsgi_init
             dest=/etc/init/{{ django_project_name }}.conf
   when: ansible_distribution_release == 'trusty'
   notify: restart uwsgi
 
 - name: Configure uWSGI init script (systemd)
-  become: yes
+  become: 'yes'
   template: src=uwsgi.service
             dest=/lib/systemd/system/{{ django_project_name }}.service
   when: ansible_distribution_release == 'xenial'

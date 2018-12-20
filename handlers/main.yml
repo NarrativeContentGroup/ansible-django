@@ -1,15 +1,17 @@
+---
+
 - name: reload uwsgi
-  become: yes
+  become: 'yes'
   service: name={{ django_project_name }} state=reloaded
 
 - name: restart uwsgi
-  become: yes
+  become: 'yes'
   service: name={{ django_project_name }} state=restarted
 
 - name: restart uwsgi (systemd)
-  become: yes
+  become: 'yes'
   systemd: name={{ django_project_name }} state=restarted
 
 - name: reload nginx
-  become: yes
+  become: 'yes'
   service: name=nginx state=reloaded

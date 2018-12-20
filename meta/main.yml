@@ -14,7 +14,7 @@ galaxy_info:
 
 dependencies:
   - role: nickhammond.logrotate
-    become: yes
+    become: 'yes'
     logrotate_scripts:
       - name: uwsgi
         path: /var/log/uwsgi/*.log
