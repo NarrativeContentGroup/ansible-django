@@ -1,9 +1,0 @@
----
-
-- name: mnn.postgresql
-  src: https://github.com/MotherNatureNetwork/ansible-postgresql
-  version: v1.2.1
-
-- name: mnn.nginx
-  src: https://github.com/MotherNatureNetwork/ansible-nginx.git
-  version: v1.2.2
