@@ -79,5 +79,5 @@
   become: 'yes'
   template: src=uwsgi.service
             dest=/lib/systemd/system/{{ django_project_name }}.service
-  when: ansible_distribution_release == 'xenial'
+  when: ansible_distribution_release == 'bionic'
   notify: restart uwsgi (systemd)
