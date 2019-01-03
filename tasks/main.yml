@@ -8,6 +8,10 @@
   tags:
     - requirements
 
+- name: Create user for Django.
+  user: name={{ django_user }}
+        home="/home/{{ django_user }}"
+
 - name: Create the project directory.
   become: 'yes'
   file: state=directory
@@ -22,13 +26,15 @@
 - name: Create Deployment Symlink
   file: src={{ django_project_path }}
         dest={{ django_deployment_symlink }}
-        owner={{ ansible_ssh_user }}
-        group={{ ansible_ssh_user }}
-        force=yes
+        owner={{ django_user }}
+        group={{ django_user }}
+        force='yes'
         state=link
   when: not symlink.stat.exists
 
 - name: Pull code from git repo.
+  become: 'yes'
+  become_user: '{{ django_user }}'
   git: repo={{ django_repo }}
        dest={{ django_project_source }}
        accept_hostkey='yes'
@@ -122,9 +128,9 @@
 - name: Move Deployment Symlink
   file: src={{ django_project_path }}
         dest={{ django_deployment_symlink }}
-        owner={{ ansible_ssh_user }}
-        group={{ ansible_ssh_user }}
-        force=yes
+        owner={{ django_user }}
+        group={{ django_user }}
+        force='yes'
         state=link
   tags:
     - deploy
