@@ -59,7 +59,7 @@ django_system_packages:
 
   - python-pip
 
-django_uwsgi_version: 2.0.11.2
+django_uwsgi_version: 2.0.17.1
 django_uwsgi_stats: null
 django_uwsgi_processes: 2
 django_uwsgi_max_requests: 10000
