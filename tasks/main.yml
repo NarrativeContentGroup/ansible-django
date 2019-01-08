@@ -140,15 +140,12 @@
   service: name={{ django_project_name }} state=reloaded
   when: ansible_distribution_release == 'trusty'
 
-- name: Make sure uWSGI is running
-  become: yes
-  systemd: name={{ django_project_name }} state=started
-  when: ansible_distribution_release == 'xenial' or
-        ansible_distribution_release == 'bionic'
-
 - name: Reload uWSGI process [systemd]
   become: yes
-  systemd: name={{ django_project_name }} state=reloaded
+  systemd:
+    name: '{{ django_project_name }}'
+    state: restarted
+    daemon_reload: yes
   when: ansible_distribution_release == 'bionic' or
         ansible_distribution_release == 'xenial'
 
