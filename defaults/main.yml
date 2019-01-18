@@ -62,7 +62,7 @@ django_system_packages:
 django_uwsgi_version: 2.0.17.1
 django_uwsgi_stats: null
 django_uwsgi_processes: 2
-django_uwsgi_max_requests: 10000
+django_uwsgi_max_requests: 1000
 django_uwsgi_file: "{{ uwsgi_vassals_path }}/{{ django_project_name }}.ini"
 
 django_basic_auth: false
