@@ -68,13 +68,6 @@
   template: src=django.pth
             dest={{ django_project_path }}/lib/python2.7/site-packages/
 
-- name: Fix source directory permissions
-  file: state=directory
-        path={{ django_project_source }}
-        owner={{ django_user }}
-        group={{ django_user }}
-        recurse=yes
-
 - name: Logging directory permissions
   become: 'yes'
   file: state=directory
