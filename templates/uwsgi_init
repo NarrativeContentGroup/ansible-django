@@ -9,7 +9,7 @@ exec uwsgi \
 --uid {{ django_user }} \
 --gid {{ django_user }} \
 --home {{ django_project_path }} \
-{% for key,value in django_env.iteritems() %}
+{% for key,value in django_env.items() | list %}
 --env {{ key }}="{{ value }}" \
 {% endfor %}
 --pythonpath {{ django_project_source }}/{{ django_project_name }} \
