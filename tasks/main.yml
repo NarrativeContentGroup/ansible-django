@@ -66,7 +66,7 @@
 
 - name: Configure Python PATH
   template: src=django.pth
-            dest={{ django_project_path }}/lib/python2.7/site-packages/
+            dest={{ django_project_path }}/lib/python3.6/site-packages/
 
 - name: Logging directory permissions
   become: 'yes'
