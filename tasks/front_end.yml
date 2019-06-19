@@ -12,6 +12,8 @@
        version={{ item.version }}
        user_install=no
   with_items:
+    - name: ffi
+      version: 1.10.0
     - name: rb-inotify
       version: 0.9.10
     - name: compass
