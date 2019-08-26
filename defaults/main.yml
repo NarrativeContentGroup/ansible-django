@@ -30,6 +30,7 @@ django_port: 80
 django_project_path: '{{ django_deployment_base }}/{{ django_project_name }}'
 django_python_path_extra: []
 django_python_requirements: []
+django_python_version: '3.6'
 django_project_source: "{{ django_project_path }}/src"
 django_requirements_file: requirements.txt
 django_setup_frontend: true
