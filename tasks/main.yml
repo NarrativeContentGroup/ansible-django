@@ -49,9 +49,9 @@
        virtualenv={{ django_project_path }}
   with_items:
     - name: pip
-      version: 9.0.1
+      version: 19.3.1
     - name: setuptools
-      version: 35.0.2
+      version: 42.0.2
 
 - name: Install python requirements
   pip: name={{ item }}
