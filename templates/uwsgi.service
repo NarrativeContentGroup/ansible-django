@@ -2,6 +2,9 @@
 Description={{ django_project_name }}
 After=syslog.target
 
+[Install]
+WantedBy=multi-user.target
+
 [Service]
 ExecStart=/usr/local/bin/uwsgi \
         --uid {{ django_user }} \

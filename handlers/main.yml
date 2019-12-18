@@ -10,7 +10,7 @@
 
 - name: restart uwsgi (systemd)
   become: 'yes'
-  systemd: name={{ django_project_name }} state=restarted
+  systemd: name={{ django_project_name }} state=restarted enabled=yes
 
 - name: reload nginx
   become: 'yes'

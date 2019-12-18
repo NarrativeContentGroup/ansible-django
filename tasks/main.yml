@@ -139,6 +139,7 @@
     name: '{{ django_project_name }}'
     state: restarted
     daemon_reload: yes
+    enabled: yes
   when: ansible_distribution_release == 'bionic' or
         ansible_distribution_release == 'xenial'
 
